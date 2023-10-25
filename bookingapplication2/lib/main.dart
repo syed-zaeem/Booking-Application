@@ -1,5 +1,5 @@
-import 'package:bookingapplication2/LogIn.dart';
-import 'package:bookingapplication2/SignUp.dart';
+import 'package:bookingapplication2/Screens/LogIn.dart';
+import 'package:bookingapplication2/Screens/SignUp.dart';
 import 'package:flutter/material.dart';
 
 void main() {

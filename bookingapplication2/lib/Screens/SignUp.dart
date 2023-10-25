@@ -9,7 +9,9 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   String? _selectedGender;
+  String? _selectedRole;
   List<String> genderOptions = ['Male', 'Female', 'Other'];
+  List<String> roleOptions = ['Seller', 'Customer'];
 
   DateTime? _selectedDate;
 
@@ -120,6 +122,22 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                 ),
                               ),
+                              const Padding(
+                                padding: EdgeInsets.fromLTRB(
+                                  0,
+                                  0,
+                                  0,
+                                  10,
+                                ),
+                                child: TextField(
+                                  obscureText: true,
+                                  decoration: InputDecoration(
+                                    hintText: "Confirm your Password",
+                                    border: OutlineInputBorder(),
+                                    prefixIcon: Icon(Icons.lock),
+                                  ),
+                                ),
+                              ),
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(
                                   0,
@@ -197,22 +215,34 @@ class _SignUpState extends State<SignUp> {
                                   ),
                                 ),
                               ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(
                                   0,
                                   0,
                                   0,
                                   40,
                                 ),
-                                child: TextField(
-                                  obscureText: true,
-                                  decoration: InputDecoration(
-                                    hintText: "Confirm your Password",
+                                child: DropdownButtonFormField<String>(
+                                  value: _selectedRole,
+                                  decoration: const InputDecoration(
                                     border: OutlineInputBorder(),
-                                    prefixIcon: Icon(Icons.lock),
+                                    hintText: "Select your Role",
+                                    prefixIcon: Icon(Icons.male),
                                   ),
+                                  items: roleOptions.map((String role) {
+                                    return DropdownMenuItem<String>(
+                                      value: role,
+                                      child: Text(role),
+                                    );
+                                  }).toList(),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      _selectedRole = newValue;
+                                    });
+                                  },
                                 ),
                               ),
+
                               // Expanded(
                               Container(
                                 width: double.infinity,
