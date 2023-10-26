@@ -60,8 +60,8 @@ class _SignUpState extends State<SignUp> {
                                 style: TextStyle(
                                     fontSize: 22, fontWeight: FontWeight.bold),
                               ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(
                                   0,
                                   20,
                                   0,
@@ -70,14 +70,22 @@ class _SignUpState extends State<SignUp> {
                                 child: TextField(
                                   decoration: InputDecoration(
                                     hintText: "Enter your Full Name",
-                                    border: OutlineInputBorder(),
-                                    prefixIcon: Icon(Icons.person),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          30), // Adjust the radius value as needed
+                                    ),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                    prefixIcon: const Icon(
+                                      Icons.person,
+                                      size: 24,
+                                    ),
                                   ),
-                                  // style: TextStyle(fontSize: 20),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(
                                   0,
                                   0,
                                   0,
@@ -86,13 +94,20 @@ class _SignUpState extends State<SignUp> {
                                 child: TextField(
                                   decoration: InputDecoration(
                                     hintText: "Enter your Username",
-                                    border: OutlineInputBorder(),
-                                    prefixIcon: Icon(Icons.account_circle),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          30), // Adjust the radius value as needed
+                                    ),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                    prefixIcon: const Icon(Icons.account_circle,
+                                        size: 24),
                                   ),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(
                                   0,
                                   0,
                                   0,
@@ -101,13 +116,22 @@ class _SignUpState extends State<SignUp> {
                                 child: TextField(
                                   decoration: InputDecoration(
                                     hintText: "Enter your Email",
-                                    border: OutlineInputBorder(),
-                                    prefixIcon: Icon(Icons.email),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          30), // Adjust the radius value as needed
+                                    ),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                    prefixIcon: const Icon(
+                                      Icons.email,
+                                      size: 24,
+                                    ),
                                   ),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(
                                   0,
                                   0,
                                   0,
@@ -117,13 +141,22 @@ class _SignUpState extends State<SignUp> {
                                   obscureText: true,
                                   decoration: InputDecoration(
                                     hintText: "Enter your Password",
-                                    border: OutlineInputBorder(),
-                                    prefixIcon: Icon(Icons.lock),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          30), // Adjust the radius value as needed
+                                    ),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                    prefixIcon: const Icon(
+                                      Icons.lock,
+                                      size: 24,
+                                    ),
                                   ),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(
                                   0,
                                   0,
                                   0,
@@ -133,9 +166,18 @@ class _SignUpState extends State<SignUp> {
                                   obscureText: true,
                                   decoration: InputDecoration(
                                     hintText: "Confirm your Password",
-                                    border: OutlineInputBorder(),
-                                    prefixIcon: Icon(Icons.lock),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          30), // Adjust the radius value as needed
+                                    ),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                    prefixIcon: const Icon(
+                                      Icons.lock,
+                                      size: 24,
+                                    ),
                                   ),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ),
                               Padding(
@@ -147,10 +189,18 @@ class _SignUpState extends State<SignUp> {
                                 ),
                                 child: DropdownButtonFormField<String>(
                                   value: _selectedGender,
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          30), // Adjust the radius value as needed
+                                    ),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 12),
                                     hintText: "Select your Gender",
-                                    prefixIcon: Icon(Icons.male),
+                                    prefixIcon: const Icon(
+                                      Icons.male,
+                                      size: 24,
+                                    ),
                                   ),
                                   items: genderOptions.map((String gender) {
                                     return DropdownMenuItem<String>(
@@ -163,6 +213,7 @@ class _SignUpState extends State<SignUp> {
                                       _selectedGender = newValue;
                                     });
                                   },
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ),
                               Padding(
@@ -175,18 +226,27 @@ class _SignUpState extends State<SignUp> {
                                 child: TextFormField(
                                   controller: _dateController,
                                   readOnly: true,
-                                  decoration: const InputDecoration(
+                                  decoration: InputDecoration(
                                     hintText: "Select your Date of Birth",
-                                    border: OutlineInputBorder(),
-                                    prefixIcon: Icon(Icons.date_range),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          30), // Adjust the radius value as needed
+                                    ),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                    prefixIcon: const Icon(
+                                      Icons.date_range,
+                                      size: 24,
+                                    ),
                                   ),
                                   onTap: () {
                                     _selectDate(context);
                                   },
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(
                                   0,
                                   0,
                                   0,
@@ -195,13 +255,22 @@ class _SignUpState extends State<SignUp> {
                                 child: TextField(
                                   decoration: InputDecoration(
                                     hintText: "Enter your Contact",
-                                    border: OutlineInputBorder(),
-                                    prefixIcon: Icon(Icons.phone),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          30), // Adjust the radius value as needed
+                                    ),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                    prefixIcon: const Icon(
+                                      Icons.phone,
+                                      size: 24,
+                                    ),
                                   ),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ),
-                              const Padding(
-                                padding: EdgeInsets.fromLTRB(
+                              Padding(
+                                padding: const EdgeInsets.fromLTRB(
                                   0,
                                   0,
                                   0,
@@ -210,9 +279,18 @@ class _SignUpState extends State<SignUp> {
                                 child: TextField(
                                   decoration: InputDecoration(
                                     hintText: "Enter your Address",
-                                    border: OutlineInputBorder(),
-                                    prefixIcon: Icon(Icons.location_on),
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          30), // Adjust the radius value as needed
+                                    ),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                    prefixIcon: const Icon(
+                                      Icons.location_on,
+                                      size: 24,
+                                    ),
                                   ),
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ),
                               Padding(
@@ -224,10 +302,18 @@ class _SignUpState extends State<SignUp> {
                                 ),
                                 child: DropdownButtonFormField<String>(
                                   value: _selectedRole,
-                                  decoration: const InputDecoration(
-                                    border: OutlineInputBorder(),
+                                  decoration: InputDecoration(
+                                    border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(
+                                          30), // Adjust the radius value as needed
+                                    ),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 12),
                                     hintText: "Select your Role",
-                                    prefixIcon: Icon(Icons.male),
+                                    prefixIcon: const Icon(
+                                      Icons.person,
+                                      size: 24,
+                                    ),
                                   ),
                                   items: roleOptions.map((String role) {
                                     return DropdownMenuItem<String>(
@@ -240,6 +326,7 @@ class _SignUpState extends State<SignUp> {
                                       _selectedRole = newValue;
                                     });
                                   },
+                                  style: const TextStyle(fontSize: 16),
                                 ),
                               ),
 

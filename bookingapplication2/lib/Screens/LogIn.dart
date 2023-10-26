@@ -5,11 +5,41 @@ class LogIn extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData mediaQuery = MediaQuery.of(context);
+
+    double screenWidth = mediaQuery.size.width;
+    double screenHeight = mediaQuery.size.height;
+
+    double fontSize = screenWidth < 400
+        ? 15.0 // Font size for screen width less than 400
+        : screenWidth < 600
+            ? 16.0 // Font size for screen width less than 600
+            : 20.0; // Default
+    double iconSize = screenWidth < 400
+        ? 20.0 // Font size for screen width less than 400
+        : screenWidth < 600
+            ? 24.0
+            : 26.0;
+    double verticalHeight = screenHeight < 400 ? 8 : 12;
+    double lastlinepaddingleft = screenWidth < 600 ? 0.0 : 20.0;
+    double lastlinefontsize = screenWidth < 450 ? 12 : 16;
+    double buttonFont = screenWidth < 400 ? 18 : 20;
+    double buttonPadding = screenWidth < 400 ? 6 : 8;
+    double mainPadding = screenWidth < 400
+        ? 30
+        : screenWidth < 600
+            ? 40
+            : screenWidth < 800
+                ? 80
+                : screenWidth < 1000
+                    ? 150
+                    : 200;
+
     return Scaffold(
       body: Container(
           width: double.maxFinite,
           child: Padding(
-              padding: const EdgeInsets.fromLTRB(75, 100, 75, 0),
+              padding: EdgeInsets.fromLTRB(mainPadding, 100, mainPadding, 0),
               child: Column(
                 children: <Widget>[
                   const Text(
@@ -30,8 +60,8 @@ class LogIn extends StatelessWidget {
                               style: TextStyle(
                                   fontSize: 22, fontWeight: FontWeight.bold),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.fromLTRB(
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
                                 0,
                                 20,
                                 0,
@@ -40,13 +70,22 @@ class LogIn extends StatelessWidget {
                               child: TextField(
                                 decoration: InputDecoration(
                                   hintText: "Enter your Username",
-                                  border: OutlineInputBorder(),
-                                  prefixIcon: Icon(Icons.person),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(
+                                        30), // Adjust the radius value as needed
+                                  ),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: verticalHeight),
+                                  prefixIcon: Icon(
+                                    Icons.person,
+                                    size: iconSize,
+                                  ),
                                 ),
+                                style: TextStyle(fontSize: fontSize),
                               ),
                             ),
-                            const Padding(
-                              padding: EdgeInsets.fromLTRB(
+                            Padding(
+                              padding: const EdgeInsets.fromLTRB(
                                 0,
                                 0,
                                 0,
@@ -56,9 +95,18 @@ class LogIn extends StatelessWidget {
                                 obscureText: true,
                                 decoration: InputDecoration(
                                   hintText: "Enter your Password",
-                                  border: OutlineInputBorder(),
-                                  prefixIcon: Icon(Icons.lock),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(
+                                        30), // Adjust the radius value as needed
+                                  ),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: verticalHeight),
+                                  prefixIcon: Icon(
+                                    Icons.lock,
+                                    size: iconSize,
+                                  ),
                                 ),
+                                style: TextStyle(fontSize: fontSize),
                               ),
                             ),
                             // Expanded(
@@ -70,32 +118,35 @@ class LogIn extends StatelessWidget {
                                       backgroundColor:
                                           MaterialStateProperty.all(
                                               Colors.blue)),
-                                  child: const Padding(
-                                    padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(
+                                        0, buttonPadding, 0, buttonPadding),
                                     child: Text(
                                       "Log In",
                                       style: TextStyle(
-                                          fontSize: 20,
+                                          fontSize: buttonFont,
                                           color: Colors.white,
                                           fontWeight: FontWeight.w900),
                                     ),
                                   )),
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                              padding: EdgeInsets.fromLTRB(
+                                  lastlinepaddingleft, 20, 0, 0),
                               child: Row(
                                 children: <Widget>[
-                                  const Text(
+                                  Text(
                                     "Don't have an Account ",
-                                    style: TextStyle(fontSize: 16),
+                                    style:
+                                        TextStyle(fontSize: lastlinefontsize),
                                   ),
                                   TextButton(
                                       onPressed: () {},
-                                      child: const Text(
+                                      child: Text(
                                         "Sign Up Here",
                                         style: TextStyle(
                                             fontWeight: FontWeight.bold,
-                                            fontSize: 16),
+                                            fontSize: lastlinefontsize),
                                       ))
                                 ],
                               ),
