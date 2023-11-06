@@ -2,6 +2,11 @@ import 'package:bookingapplication2/Screens/Add_Room_Admin.dart';
 import 'package:bookingapplication2/Screens/LogIn.dart';
 import 'package:bookingapplication2/Screens/SignUp.dart';
 import 'package:flutter/material.dart';
+import 'package:bookingapplication2/responsive/desktop_body.dart';
+import 'package:bookingapplication2/responsive/table_body.dart';
+// import 'package:flutter/material.dart';
+import 'responsive/mobile_body.dart';
+import 'responsive/responsive_layout.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,9 +25,15 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
         ),
         home: const AddRoomAdmin(),
+        // home: ResponsiveLayout(
+        //   mobileBody: const MobileScaffold(),
+        //   tabletBody: const TabletScaffold(),
+        //   desktopBody: const DesktopScaffold(),
+        // ),
         routes: {
           "/Signup": (context) => const SignUp(),
           "/Login": (context) => const LogIn(),
+          // "/Home": (context) =>
         });
   }
 }
