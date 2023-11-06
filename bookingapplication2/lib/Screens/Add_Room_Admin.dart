@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:bookingapplication2/Util/numberInput.dart';
 
 class AddRoomAdmin extends StatefulWidget {
   const AddRoomAdmin({super.key});
@@ -8,12 +9,8 @@ class AddRoomAdmin extends StatefulWidget {
 }
 
 class _AddRoomAdminState extends State<AddRoomAdmin> {
-  String? _selectedGender;
-  String? _selectedRole;
   String? _selectedRoomtype;
   String? _selectedOccupancyStatus;
-  List<String> genderOptions = ['Male', 'Female', 'Other'];
-  List<String> roleOptions = ['Seller', 'Customer'];
   List<String> roomtypeOptions = [
     'Single',
     'Double',
@@ -28,23 +25,23 @@ class _AddRoomAdminState extends State<AddRoomAdmin> {
     'Cleaning in Progress'
   ];
 
-  DateTime? _selectedDate;
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    // Use a regular expression to allow only numeric input
+    final RegExp regExp = RegExp(r'[0-9]');
+    String newString = '';
 
-  TextEditingController _dateController = TextEditingController();
-
-  Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDatePicker(
-      context: context,
-      initialDate: DateTime.now(),
-      firstDate: DateTime(2000),
-      lastDate: DateTime(2101),
-    );
-    if (picked != null) {
-      setState(() {
-        _selectedDate = picked;
-        _dateController.text = "${picked.toLocal()}".split(' ')[0];
-      });
+    for (int i = 0; i < newValue.text.length; i++) {
+      if (regExp.hasMatch(newValue.text[i])) {
+        newString += newValue.text[i];
+      }
     }
+
+    return TextEditingValue(
+      text: newString,
+      selection:
+          TextSelection.fromPosition(TextPosition(offset: newString.length)),
+    );
   }
 
   @override
@@ -197,7 +194,6 @@ class _AddRoomAdminState extends State<AddRoomAdmin> {
                                   style: TextStyle(fontSize: fontSize),
                                 ),
                               ),
-
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(
                                   0,
@@ -206,6 +202,7 @@ class _AddRoomAdminState extends State<AddRoomAdmin> {
                                   10,
                                 ),
                                 child: TextField(
+                                  inputFormatters: [NumericInputFormatter()],
                                   decoration: InputDecoration(
                                     hintText: "Enter the Capacity of people",
                                     border: OutlineInputBorder(
@@ -234,6 +231,7 @@ class _AddRoomAdminState extends State<AddRoomAdmin> {
                                   10,
                                 ),
                                 child: TextField(
+                                  inputFormatters: [NumericInputFormatter()],
                                   decoration: InputDecoration(
                                     hintText: "Enter the Price per night",
                                     border: OutlineInputBorder(
@@ -310,6 +308,8 @@ class _AddRoomAdminState extends State<AddRoomAdmin> {
                                   40,
                                 ),
                                 child: TextField(
+                                  // keyboardType: TextInputType.number,
+                                  inputFormatters: [NumericInputFormatter()],
                                   decoration: InputDecoration(
                                     hintText: "Enter the Number of Beds",
                                     border: OutlineInputBorder(
@@ -355,31 +355,6 @@ class _AddRoomAdminState extends State<AddRoomAdmin> {
                                       ),
                                     )),
                               ),
-                              // Padding(
-                              //   padding: EdgeInsets.fromLTRB(
-                              //       lastlinepaddingleft, 20, 0, 300),
-                              //   child: Row(
-                              //     children: <Widget>[
-                              //       Text(
-                              //         "Already have an Account ",
-                              //         style:
-                              //             TextStyle(fontSize: lastlinefontsize),
-                              //       ),
-                              //       TextButton(
-                              //           onPressed: () {
-                              //             Navigator.pushNamed(
-                              //                 context, "/Login");
-                              //           },
-                              //           child: Text(
-                              //             "Log In Here",
-                              //             style: TextStyle(
-                              //                 fontWeight: FontWeight.bold,
-                              //                 fontSize: lastlinefontsize),
-                              //           ))
-                              //     ],
-                              //   ),
-                              // )
-                              // )
                             ],
                           ),
                         ))
