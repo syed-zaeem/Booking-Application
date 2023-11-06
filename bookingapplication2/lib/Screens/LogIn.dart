@@ -14,7 +14,7 @@ class LogIn extends StatelessWidget {
         ? 15.0 // Font size for screen width less than 400
         : screenWidth < 600
             ? 16.0 // Font size for screen width less than 600
-            : 20.0; // Default
+            : 18.0; // Default
     double iconSize = screenWidth < 400
         ? 20.0 // Font size for screen width less than 400
         : screenWidth < 600
@@ -30,10 +30,28 @@ class LogIn extends StatelessWidget {
         : screenWidth < 600
             ? 40
             : screenWidth < 800
-                ? 80
+                ? 100
                 : screenWidth < 1000
-                    ? 150
-                    : 200;
+                    ? 200
+                    : 320;
+    double iconPaddingLeft = screenWidth < 400
+        ? 0
+        : screenWidth < 600
+            ? 8
+            : screenWidth < 800
+                ? 12
+                : screenWidth < 1000
+                    ? 16
+                    : 20;
+    double iconPaddingRight = screenWidth < 400
+        ? 0
+        : screenWidth < 600
+            ? 8
+            : screenWidth < 800
+                ? 12
+                : screenWidth < 1000
+                    ? 16
+                    : 20;
 
     return Scaffold(
       body: Container(
@@ -76,9 +94,16 @@ class LogIn extends StatelessWidget {
                                   ),
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: verticalHeight),
-                                  prefixIcon: Icon(
-                                    Icons.person,
-                                    size: iconSize,
+                                  prefixIcon: Padding(
+                                    padding: EdgeInsets.fromLTRB(
+                                        iconPaddingLeft,
+                                        0,
+                                        iconPaddingRight,
+                                        0),
+                                    child: Icon(
+                                      Icons.person,
+                                      size: iconSize,
+                                    ),
                                   ),
                                 ),
                                 style: TextStyle(fontSize: fontSize),
@@ -101,9 +126,16 @@ class LogIn extends StatelessWidget {
                                   ),
                                   contentPadding: EdgeInsets.symmetric(
                                       vertical: verticalHeight),
-                                  prefixIcon: Icon(
-                                    Icons.lock,
-                                    size: iconSize,
+                                  prefixIcon: Padding(
+                                    padding: EdgeInsets.fromLTRB(
+                                        iconPaddingLeft,
+                                        0,
+                                        iconPaddingRight,
+                                        0),
+                                    child: Icon(
+                                      Icons.lock,
+                                      size: iconSize,
+                                    ),
                                   ),
                                 ),
                                 style: TextStyle(fontSize: fontSize),
@@ -141,7 +173,9 @@ class LogIn extends StatelessWidget {
                                         TextStyle(fontSize: lastlinefontsize),
                                   ),
                                   TextButton(
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        Navigator.pushNamed(context, "/Signup");
+                                      },
                                       child: Text(
                                         "Sign Up Here",
                                         style: TextStyle(

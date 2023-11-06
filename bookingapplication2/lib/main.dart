@@ -18,7 +18,11 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           useMaterial3: true,
         ),
-        home: const LogIn());
+        home: const SignUp(),
+        routes: {
+          "/Signup": (context) => const SignUp(),
+          "/Login": (context) => const LogIn(),
+        });
   }
 }
 

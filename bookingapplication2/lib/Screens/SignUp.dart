@@ -34,12 +34,60 @@ class _SignUpState extends State<SignUp> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData mediaQuery = MediaQuery.of(context);
+
+    double screenWidth = mediaQuery.size.width;
+    double screenHeight = mediaQuery.size.height;
+
+    double fontSize = screenWidth < 400
+        ? 15.0 // Font size for screen width less than 400
+        : screenWidth < 600
+            ? 16.0 // Font size for screen width less than 600
+            : 18.0; // Default
+    double iconSize = screenWidth < 400
+        ? 20.0 // Font size for screen width less than 400
+        : screenWidth < 600
+            ? 24.0
+            : 26.0;
+    double verticalHeight = screenHeight < 400 ? 8 : 12;
+    double lastlinepaddingleft = screenWidth < 600 ? 0.0 : 20.0;
+    double lastlinefontsize = screenWidth < 450 ? 12 : 16;
+    double buttonFont = screenWidth < 400 ? 18 : 20;
+    double buttonPadding = screenWidth < 400 ? 6 : 8;
+    double mainPadding = screenWidth < 400
+        ? 30
+        : screenWidth < 600
+            ? 40
+            : screenWidth < 800
+                ? 100
+                : screenWidth < 1000
+                    ? 200
+                    : 320;
+    double iconPaddingLeft = screenWidth < 400
+        ? 0
+        : screenWidth < 600
+            ? 8
+            : screenWidth < 800
+                ? 12
+                : screenWidth < 1000
+                    ? 16
+                    : 20;
+    double iconPaddingRight = screenWidth < 400
+        ? 0
+        : screenWidth < 600
+            ? 8
+            : screenWidth < 800
+                ? 12
+                : screenWidth < 1000
+                    ? 16
+                    : 20;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Container(
             width: double.maxFinite,
             child: Padding(
-                padding: const EdgeInsets.fromLTRB(75, 50, 75, 100),
+                padding: EdgeInsets.fromLTRB(mainPadding, 100, mainPadding, 0),
                 child: Column(
                   children: <Widget>[
                     const Text(
@@ -74,14 +122,21 @@ class _SignUpState extends State<SignUp> {
                                       borderRadius: BorderRadius.circular(
                                           30), // Adjust the radius value as needed
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        vertical: 12),
-                                    prefixIcon: const Icon(
-                                      Icons.person,
-                                      size: 24,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: verticalHeight),
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.fromLTRB(
+                                          iconPaddingLeft,
+                                          0,
+                                          iconPaddingRight,
+                                          0),
+                                      child: Icon(
+                                        Icons.person,
+                                        size: iconSize,
+                                      ),
                                     ),
                                   ),
-                                  style: const TextStyle(fontSize: 16),
+                                  style: TextStyle(fontSize: fontSize),
                                 ),
                               ),
                               Padding(
@@ -98,12 +153,19 @@ class _SignUpState extends State<SignUp> {
                                       borderRadius: BorderRadius.circular(
                                           30), // Adjust the radius value as needed
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        vertical: 12),
-                                    prefixIcon: const Icon(Icons.account_circle,
-                                        size: 24),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: verticalHeight),
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.fromLTRB(
+                                          iconPaddingLeft,
+                                          0,
+                                          iconPaddingRight,
+                                          0),
+                                      child: Icon(Icons.account_circle,
+                                          size: iconSize),
+                                    ),
                                   ),
-                                  style: const TextStyle(fontSize: 16),
+                                  style: TextStyle(fontSize: fontSize),
                                 ),
                               ),
                               Padding(
@@ -120,14 +182,21 @@ class _SignUpState extends State<SignUp> {
                                       borderRadius: BorderRadius.circular(
                                           30), // Adjust the radius value as needed
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        vertical: 12),
-                                    prefixIcon: const Icon(
-                                      Icons.email,
-                                      size: 24,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: verticalHeight),
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.fromLTRB(
+                                          iconPaddingLeft,
+                                          0,
+                                          iconPaddingRight,
+                                          0),
+                                      child: Icon(
+                                        Icons.email,
+                                        size: iconSize,
+                                      ),
                                     ),
                                   ),
-                                  style: const TextStyle(fontSize: 16),
+                                  style: TextStyle(fontSize: fontSize),
                                 ),
                               ),
                               Padding(
@@ -145,14 +214,21 @@ class _SignUpState extends State<SignUp> {
                                       borderRadius: BorderRadius.circular(
                                           30), // Adjust the radius value as needed
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        vertical: 12),
-                                    prefixIcon: const Icon(
-                                      Icons.lock,
-                                      size: 24,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: verticalHeight),
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.fromLTRB(
+                                          iconPaddingLeft,
+                                          0,
+                                          iconPaddingRight,
+                                          0),
+                                      child: Icon(
+                                        Icons.lock,
+                                        size: iconSize,
+                                      ),
                                     ),
                                   ),
-                                  style: const TextStyle(fontSize: 16),
+                                  style: TextStyle(fontSize: fontSize),
                                 ),
                               ),
                               Padding(
@@ -170,14 +246,21 @@ class _SignUpState extends State<SignUp> {
                                       borderRadius: BorderRadius.circular(
                                           30), // Adjust the radius value as needed
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        vertical: 12),
-                                    prefixIcon: const Icon(
-                                      Icons.lock,
-                                      size: 24,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: verticalHeight),
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.fromLTRB(
+                                          iconPaddingLeft,
+                                          0,
+                                          iconPaddingRight,
+                                          0),
+                                      child: Icon(
+                                        Icons.lock,
+                                        size: iconSize,
+                                      ),
                                     ),
                                   ),
-                                  style: const TextStyle(fontSize: 16),
+                                  style: TextStyle(fontSize: fontSize),
                                 ),
                               ),
                               Padding(
@@ -194,12 +277,19 @@ class _SignUpState extends State<SignUp> {
                                       borderRadius: BorderRadius.circular(
                                           30), // Adjust the radius value as needed
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        vertical: 12),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: verticalHeight),
                                     hintText: "Select your Gender",
-                                    prefixIcon: const Icon(
-                                      Icons.male,
-                                      size: 24,
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.fromLTRB(
+                                          iconPaddingLeft,
+                                          0,
+                                          iconPaddingRight,
+                                          0),
+                                      child: Icon(
+                                        Icons.male,
+                                        size: iconSize,
+                                      ),
                                     ),
                                   ),
                                   items: genderOptions.map((String gender) {
@@ -213,7 +303,7 @@ class _SignUpState extends State<SignUp> {
                                       _selectedGender = newValue;
                                     });
                                   },
-                                  style: const TextStyle(fontSize: 16),
+                                  style: TextStyle(fontSize: fontSize),
                                 ),
                               ),
                               Padding(
@@ -232,17 +322,24 @@ class _SignUpState extends State<SignUp> {
                                       borderRadius: BorderRadius.circular(
                                           30), // Adjust the radius value as needed
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        vertical: 12),
-                                    prefixIcon: const Icon(
-                                      Icons.date_range,
-                                      size: 24,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: verticalHeight),
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.fromLTRB(
+                                          iconPaddingLeft,
+                                          0,
+                                          iconPaddingRight,
+                                          0),
+                                      child: Icon(
+                                        Icons.date_range,
+                                        size: iconSize,
+                                      ),
                                     ),
                                   ),
                                   onTap: () {
                                     _selectDate(context);
                                   },
-                                  style: const TextStyle(fontSize: 16),
+                                  style: TextStyle(fontSize: fontSize),
                                 ),
                               ),
                               Padding(
@@ -259,14 +356,21 @@ class _SignUpState extends State<SignUp> {
                                       borderRadius: BorderRadius.circular(
                                           30), // Adjust the radius value as needed
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        vertical: 12),
-                                    prefixIcon: const Icon(
-                                      Icons.phone,
-                                      size: 24,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: verticalHeight),
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.fromLTRB(
+                                          iconPaddingLeft,
+                                          0,
+                                          iconPaddingRight,
+                                          0),
+                                      child: Icon(
+                                        Icons.phone,
+                                        size: iconSize,
+                                      ),
                                     ),
                                   ),
-                                  style: const TextStyle(fontSize: 16),
+                                  style: TextStyle(fontSize: fontSize),
                                 ),
                               ),
                               Padding(
@@ -283,14 +387,21 @@ class _SignUpState extends State<SignUp> {
                                       borderRadius: BorderRadius.circular(
                                           30), // Adjust the radius value as needed
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        vertical: 12),
-                                    prefixIcon: const Icon(
-                                      Icons.location_on,
-                                      size: 24,
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: verticalHeight),
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.fromLTRB(
+                                          iconPaddingLeft,
+                                          0,
+                                          iconPaddingRight,
+                                          0),
+                                      child: Icon(
+                                        Icons.location_on,
+                                        size: iconSize,
+                                      ),
                                     ),
                                   ),
-                                  style: const TextStyle(fontSize: 16),
+                                  style: TextStyle(fontSize: fontSize),
                                 ),
                               ),
                               Padding(
@@ -307,12 +418,19 @@ class _SignUpState extends State<SignUp> {
                                       borderRadius: BorderRadius.circular(
                                           30), // Adjust the radius value as needed
                                     ),
-                                    contentPadding: const EdgeInsets.symmetric(
-                                        vertical: 12),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: verticalHeight),
                                     hintText: "Select your Role",
-                                    prefixIcon: const Icon(
-                                      Icons.person,
-                                      size: 24,
+                                    prefixIcon: Padding(
+                                      padding: EdgeInsets.fromLTRB(
+                                          iconPaddingLeft,
+                                          0,
+                                          iconPaddingRight,
+                                          0),
+                                      child: Icon(
+                                        Icons.person,
+                                        size: iconSize,
+                                      ),
                                     ),
                                   ),
                                   items: roleOptions.map((String role) {
@@ -326,7 +444,7 @@ class _SignUpState extends State<SignUp> {
                                       _selectedRole = newValue;
                                     });
                                   },
-                                  style: const TextStyle(fontSize: 16),
+                                  style: TextStyle(fontSize: fontSize),
                                 ),
                               ),
 
@@ -339,33 +457,38 @@ class _SignUpState extends State<SignUp> {
                                         backgroundColor:
                                             MaterialStateProperty.all(
                                                 Colors.blue)),
-                                    child: const Padding(
-                                      padding: EdgeInsets.fromLTRB(0, 8, 0, 8),
+                                    child: Padding(
+                                      padding: EdgeInsets.fromLTRB(
+                                          0, buttonPadding, 0, buttonPadding),
                                       child: Text(
                                         "Create Account",
                                         style: TextStyle(
-                                            fontSize: 20,
+                                            fontSize: buttonFont,
                                             color: Colors.white,
                                             fontWeight: FontWeight.w900),
                                       ),
                                     )),
                               ),
                               Padding(
-                                padding:
-                                    const EdgeInsets.fromLTRB(20, 20, 0, 0),
+                                padding: EdgeInsets.fromLTRB(
+                                    lastlinepaddingleft, 20, 0, 300),
                                 child: Row(
                                   children: <Widget>[
-                                    const Text(
+                                    Text(
                                       "Already have an Account ",
-                                      style: TextStyle(fontSize: 16),
+                                      style:
+                                          TextStyle(fontSize: lastlinefontsize),
                                     ),
                                     TextButton(
-                                        onPressed: () {},
-                                        child: const Text(
+                                        onPressed: () {
+                                          Navigator.pushNamed(
+                                              context, "/Login");
+                                        },
+                                        child: Text(
                                           "Log In Here",
                                           style: TextStyle(
                                               fontWeight: FontWeight.bold,
-                                              fontSize: 16),
+                                              fontSize: lastlinefontsize),
                                         ))
                                   ],
                                 ),
