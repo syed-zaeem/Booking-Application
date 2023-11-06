@@ -1,3 +1,4 @@
+import 'package:bookingapplication2/Screens/Add_Room_Admin.dart';
 import 'package:bookingapplication2/Screens/LogIn.dart';
 import 'package:bookingapplication2/Screens/SignUp.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
           useMaterial3: true,
         ),
-        home: const SignUp(),
+        home: const AddRoomAdmin(),
         routes: {
           "/Signup": (context) => const SignUp(),
           "/Login": (context) => const LogIn(),
