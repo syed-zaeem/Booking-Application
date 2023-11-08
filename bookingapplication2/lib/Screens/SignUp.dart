@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class SignUp extends StatefulWidget {
   const SignUp({super.key});
@@ -15,7 +17,17 @@ class _SignUpState extends State<SignUp> {
 
   DateTime? _selectedDate;
 
-  TextEditingController _dateController = TextEditingController();
+  TextEditingController dateController = TextEditingController();
+  TextEditingController genderController = TextEditingController();
+  TextEditingController roleController = TextEditingController();
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController contactController = TextEditingController();
+  TextEditingController addressController = TextEditingController();
+
+  final String apiUrl = 'http://localhost:8000/signup';
 
   Future<void> _selectDate(BuildContext context) async {
     final DateTime? picked = await showDatePicker(
@@ -27,8 +39,44 @@ class _SignUpState extends State<SignUp> {
     if (picked != null) {
       setState(() {
         _selectedDate = picked;
-        _dateController.text = "${picked.toLocal()}".split(' ')[0];
+        dateController.text = "${picked.toLocal()}".split(' ')[0];
       });
+    }
+  }
+
+  Future<void> addItem() async {
+    print("Hello Ammar!");
+    final response = await http.post(
+      Uri.parse(apiUrl),
+      headers: {"Content-Type": "application/json"},
+      body: json.encode({
+        "name": nameController.text,
+        "dateOfBirth": dateController.text,
+        "gender": _selectedGender,
+        "role": _selectedRole,
+        "username": usernameController.text,
+        "password": passwordController.text,
+        "email": emailController.text,
+        "contact": contactController.text,
+        "address": addressController.text,
+      }),
+    );
+    if (response.statusCode != '1') {
+      AlertDialog(
+          title: Text('Delete Room'),
+          content:
+              Text('Are you sure you want to delete Room?'),
+          
+        );
+      // nameController.clear();
+      // dateController.clear();
+      // genderController.clear();
+      // roleController.clear();
+      // usernameController.clear();
+      // passwordController.clear();
+      // emailController.clear();
+      // contactController.clear();
+      // addressController.clear();
     }
   }
 
@@ -116,6 +164,7 @@ class _SignUpState extends State<SignUp> {
                                   10,
                                 ),
                                 child: TextField(
+                                  controller: nameController,
                                   decoration: InputDecoration(
                                     hintText: "Enter your Full Name",
                                     border: OutlineInputBorder(
@@ -147,6 +196,7 @@ class _SignUpState extends State<SignUp> {
                                   10,
                                 ),
                                 child: TextField(
+                                  controller: usernameController,
                                   decoration: InputDecoration(
                                     hintText: "Enter your Username",
                                     border: OutlineInputBorder(
@@ -176,6 +226,7 @@ class _SignUpState extends State<SignUp> {
                                   10,
                                 ),
                                 child: TextField(
+                                  controller: emailController,
                                   decoration: InputDecoration(
                                     hintText: "Enter your Email",
                                     border: OutlineInputBorder(
@@ -207,6 +258,7 @@ class _SignUpState extends State<SignUp> {
                                   10,
                                 ),
                                 child: TextField(
+                                  controller: passwordController,
                                   obscureText: true,
                                   decoration: InputDecoration(
                                     hintText: "Enter your Password",
@@ -239,6 +291,7 @@ class _SignUpState extends State<SignUp> {
                                   10,
                                 ),
                                 child: TextField(
+                          
                                   obscureText: true,
                                   decoration: InputDecoration(
                                     hintText: "Confirm your Password",
@@ -271,6 +324,7 @@ class _SignUpState extends State<SignUp> {
                                   10,
                                 ),
                                 child: DropdownButtonFormField<String>(
+                                  
                                   value: _selectedGender,
                                   decoration: InputDecoration(
                                     border: OutlineInputBorder(
@@ -314,7 +368,7 @@ class _SignUpState extends State<SignUp> {
                                   10,
                                 ),
                                 child: TextFormField(
-                                  controller: _dateController,
+                                  controller: dateController,
                                   readOnly: true,
                                   decoration: InputDecoration(
                                     hintText: "Select your Date of Birth",
@@ -350,6 +404,7 @@ class _SignUpState extends State<SignUp> {
                                   10,
                                 ),
                                 child: TextField(
+                                  controller: contactController,
                                   decoration: InputDecoration(
                                     hintText: "Enter your Contact",
                                     border: OutlineInputBorder(
@@ -381,6 +436,7 @@ class _SignUpState extends State<SignUp> {
                                   10,
                                 ),
                                 child: TextField(
+                                  controller: addressController,
                                   decoration: InputDecoration(
                                     hintText: "Enter your Address",
                                     border: OutlineInputBorder(
@@ -452,7 +508,12 @@ class _SignUpState extends State<SignUp> {
                               Container(
                                 width: double.infinity,
                                 child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () async {
+                                      AlertDialog(
+                                          title: Text('Sing up '),
+                                          content: Text('Sucess'));
+                                      await addItem();
+                                    },
                                     style: ButtonStyle(
                                         backgroundColor:
                                             MaterialStateProperty.all(
