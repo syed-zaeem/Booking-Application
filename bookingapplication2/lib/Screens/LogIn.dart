@@ -1,11 +1,54 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class LogIn extends StatelessWidget {
   const LogIn({super.key});
+   
+
 
   @override
   Widget build(BuildContext context) {
     MediaQueryData mediaQuery = MediaQuery.of(context);
+
+  TextEditingController usernameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  
+   final String apiUrl = 'http://localhost:8000/login';
+
+
+  Future<void> login() async {
+    print("Hello Ammar!");
+    final response = await http.post(
+      Uri.parse(apiUrl),
+      headers: {"Content-Type": "application/json"},
+      body: json.encode({
+       
+        "username": usernameController.text,
+        "password": passwordController.text,
+  
+      }),
+    );
+    if (response.statusCode != '1') {
+      AlertDialog(
+          title: Text('Delete Room'),
+          content:
+              Text('Are you sure you want to delete Room?'),
+          
+        );
+      // nameController.clear();
+      // dateController.clear();
+      // genderController.clear();
+      // roleController.clear();
+      // usernameController.clear();
+      // passwordController.clear();
+      // emailController.clear();
+      // contactController.clear();
+      // addressController.clear();
+    }
+  }
 
     double screenWidth = mediaQuery.size.width;
     double screenHeight = mediaQuery.size.height;
@@ -86,6 +129,7 @@ class LogIn extends StatelessWidget {
                                 10,
                               ),
                               child: TextField(
+                                controller: usernameController,
                                 decoration: InputDecoration(
                                   hintText: "Enter your Username",
                                   border: OutlineInputBorder(
@@ -117,6 +161,7 @@ class LogIn extends StatelessWidget {
                                 40,
                               ),
                               child: TextField(
+                                controller: passwordController,
                                 obscureText: true,
                                 decoration: InputDecoration(
                                   hintText: "Enter your Password",
@@ -145,7 +190,9 @@ class LogIn extends StatelessWidget {
                             Container(
                               width: double.infinity,
                               child: ElevatedButton(
-                                  onPressed: () {},
+                                  onPressed: () async{
+                                    await login();
+                                  },
                                   style: ButtonStyle(
                                       backgroundColor:
                                           MaterialStateProperty.all(
