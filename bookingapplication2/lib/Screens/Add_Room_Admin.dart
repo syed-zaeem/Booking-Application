@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:bookingapplication2/Util/numberInput.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+
 
 class AddRoomAdmin extends StatefulWidget {
   const AddRoomAdmin({super.key});
@@ -24,6 +27,33 @@ class _AddRoomAdminState extends State<AddRoomAdmin> {
     'Reserved',
     'Cleaning in Progress'
   ];
+  TextEditingController roomNumberController = TextEditingController();
+  TextEditingController roomCapacityController = TextEditingController();
+  TextEditingController priceController = TextEditingController();
+  TextEditingController numberOfBedsController = TextEditingController();
+ final String apiUrl = 'http://localhost:8000/room/add';
+
+  Future<String> addRoom() async {
+    final response = await http.post(
+      Uri.parse(apiUrl),
+      headers: {"Content-Type": "application/json"},
+      body: json.encode({
+        "roomNumber": roomNumberController.text,
+        "roomType": _selectedRoomtype,
+        "capacity": roomCapacityController.text,
+        "price": priceController.text,
+        "status": _selectedOccupancyStatus,
+        "numberOfBeds": numberOfBedsController.text,
+      }),
+    );
+    if (response.statusCode == 201) {
+      print("Created");
+        return 'Ok';
+    }
+    else{
+      return 'Failed';
+    }
+  }
 
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
@@ -128,6 +158,7 @@ class _AddRoomAdminState extends State<AddRoomAdmin> {
                                   10,
                                 ),
                                 child: TextField(
+                                  controller: roomNumberController,
                                   decoration: InputDecoration(
                                     hintText: "Enter the Room Number",
                                     border: OutlineInputBorder(
@@ -202,6 +233,7 @@ class _AddRoomAdminState extends State<AddRoomAdmin> {
                                   10,
                                 ),
                                 child: TextField(
+                                  controller: roomCapacityController,
                                   inputFormatters: [NumericInputFormatter()],
                                   decoration: InputDecoration(
                                     hintText: "Enter the Capacity of people",
@@ -231,6 +263,7 @@ class _AddRoomAdminState extends State<AddRoomAdmin> {
                                   10,
                                 ),
                                 child: TextField(
+                                  controller: priceController,
                                   inputFormatters: [NumericInputFormatter()],
                                   decoration: InputDecoration(
                                     hintText: "Enter the Price per night",
@@ -308,6 +341,7 @@ class _AddRoomAdminState extends State<AddRoomAdmin> {
                                   40,
                                 ),
                                 child: TextField(
+                                  controller: numberOfBedsController,
                                   // keyboardType: TextInputType.number,
                                   inputFormatters: [NumericInputFormatter()],
                                   decoration: InputDecoration(
@@ -338,7 +372,9 @@ class _AddRoomAdminState extends State<AddRoomAdmin> {
                               Container(
                                 width: double.infinity,
                                 child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () async{
+                                      await addRoom();
+                                    },
                                     style: ButtonStyle(
                                         backgroundColor:
                                             MaterialStateProperty.all(

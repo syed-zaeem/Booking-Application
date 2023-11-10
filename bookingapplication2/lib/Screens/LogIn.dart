@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:bookingapplication2/responsive/desktop_body.dart';
 import 'dart:convert';
 
 class LogIn extends StatelessWidget {
@@ -19,8 +20,8 @@ class LogIn extends StatelessWidget {
    final String apiUrl = 'http://localhost:8000/login';
 
 
-  Future<void> login() async {
-    print("Hello Ammar!");
+  Future<String> login() async {
+    
     final response = await http.post(
       Uri.parse(apiUrl),
       headers: {"Content-Type": "application/json"},
@@ -31,23 +32,14 @@ class LogIn extends StatelessWidget {
   
       }),
     );
-    if (response.statusCode != '1') {
-      AlertDialog(
-          title: Text('Delete Room'),
-          content:
-              Text('Are you sure you want to delete Room?'),
-          
-        );
-      // nameController.clear();
-      // dateController.clear();
-      // genderController.clear();
-      // roleController.clear();
-      // usernameController.clear();
-      // passwordController.clear();
-      // emailController.clear();
-      // contactController.clear();
-      // addressController.clear();
-    }
+    if (response.statusCode == 200) {
+      
+    // If the status code is 200, return 'ok'
+    return 'ok';
+  } else {
+    // If the status code is not 200, return 'Failed'
+    return 'Failed';
+  }
   }
 
     double screenWidth = mediaQuery.size.width;
@@ -191,7 +183,16 @@ class LogIn extends StatelessWidget {
                               width: double.infinity,
                               child: ElevatedButton(
                                   onPressed: () async{
-                                    await login();
+                                    final data = await login();
+                                    if (data == 'ok'){
+                                        Navigator.push(context, MaterialPageRoute(builder: (context) => DesktopScaffold()));
+                                    }
+                                    else{
+                                      //Navigator.push(context, MaterialPageRoute(builder: (context) => DesktopScaffold()));
+                                    }
+
+
+
                                   },
                                   style: ButtonStyle(
                                       backgroundColor:

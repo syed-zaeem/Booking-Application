@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:bookingapplication2/Screens/Add_Room_Admin.dart';
 
 class addRoom extends StatelessWidget {
   @override
@@ -21,17 +21,21 @@ class addRoom extends StatelessWidget {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: Colors.grey[400]?.withOpacity(0.7), // Adjust opacity as needed
+                color: Colors.grey[400]
+                    ?.withOpacity(0.7), // Adjust opacity as needed
               ),
               child: Center(
-                child: Text(
-                  'Add Room',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.black,
-                  ),
-                ),
-              ),
+                  child: ElevatedButton(
+                onPressed: () {
+                  // Perform your action when the button is pressed
+                  // For example, you can navigate to the next page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => AddRoomAdmin()),
+                  );
+                },
+                child: Text('Add Room'),
+              )),
             ),
           ),
         ],
