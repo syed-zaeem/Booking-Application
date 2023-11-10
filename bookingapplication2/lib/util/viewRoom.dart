@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:bookingapplication2/Screens/Room_List.dart';
 
 class viewRoom extends StatelessWidget {
   @override
@@ -24,13 +24,17 @@ class viewRoom extends StatelessWidget {
                 color: Colors.grey[400]?.withOpacity(0.7), // Adjust opacity as needed
               ),
               child: Center(
-                child: Text(
-                  'View Room',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Colors.black,
-                  ),
-                ),
+                child: ElevatedButton(
+                onPressed: () {
+                  // Perform your action when the button is pressed
+                  // For example, you can navigate to the next page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => RoomList()),
+                  );
+                },
+                child: Text('View Room'),
+              ),
               ),
             ),
           ),
